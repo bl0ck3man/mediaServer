@@ -12,7 +12,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ${PROJECT_DIR}/nextcloclud/site:/var/www/html
+      - ${PROJECT_DIR}/nextcloud/site:/var/www/html
     environment:
       TZ: ${TIMEZONE}
   mysql8:
