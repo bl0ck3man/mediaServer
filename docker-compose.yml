@@ -69,6 +69,9 @@ services:
       - ${STORAGE_DIR}/sockets:/var/run
     environment:
       TZ: ${TIMEZONE}
+      NEXTCLOUD_ADMIN_USER: ${MYSQL_ROOT_PASSWORD}
+      NEXTCLOUD_ADMIN_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: mysql8
 
 networks:
   static-network:
