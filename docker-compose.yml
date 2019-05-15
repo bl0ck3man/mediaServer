@@ -20,18 +20,13 @@ services:
       - nextcloud
 
   mysql8:
-    user: "${USER_ID}:${GROUP_ID}"
     container_name: mysql8
     hostname: mysql8
     networks:
       static-network:
         ipv4_address: $MYSQL8_STATIC_IP_ADDRESS
     restart: always
-    build:
-      context: ./images/mysql8
-      args:
-        - uid=${USER_ID}
-        - gid=${GROUP_ID}
+    image: mysql:${MYSQL_VERSION}
     ports:
       - "3306:3306"
     volumes:
