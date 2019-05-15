@@ -1,0 +1,35 @@
+version: '3.6'
+
+services:
+  mysql8:
+    user: "${USER_ID}:${GROUP_ID}"
+    container_name: mysql8
+    hostname: mysql8
+    networks:
+      static-network:
+        ipv4_address: $MYSQL8_STATIC_IP_ADDRESS
+    restart: always
+    build:
+      context: ./images/mysql8
+      args:
+        - uid=${USER_ID}
+        - gid=${GROUP_ID}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ${PROJECT_DIR}/nextcloud/db:/var/lib/mysql
+      - ./mysql8/conf.d:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD=: ${MYSQL_PASSWORD}
+      TZ: ${TIMEZONE}
+
+networks:
+  static-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: $NETWORKS_SUBNET
+
