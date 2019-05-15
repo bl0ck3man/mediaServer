@@ -62,7 +62,7 @@ services:
       - mysql8
     volumes:
       - ${PROJECT_DIR}/nextcloud/site:/var/www/html
-      - ./images/php73/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
     environment:
       TZ: ${TIMEZONE}
 
