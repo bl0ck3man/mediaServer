@@ -17,6 +17,4 @@ max_allowed_packet=128M
 # By default we only accept connections from localhost
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
-socket=/tmp/run/mysqld8.sock
-log-error=/var/log/mysql/mysql8.error.log
 bind-address=0.0.0.0
