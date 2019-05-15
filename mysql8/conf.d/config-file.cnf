@@ -5,7 +5,18 @@
 
 [mysql]
 
+
 [mysqld]
+sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 character-set-server=utf8
 default-authentication-plugin=mysql_native_password
+skip-host-cache
+skip-federated
+max_allowed_packet=128M
+
+# By default we only accept connections from localhost
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+socket=/tmp/run/mysqld8.sock
+log-error=/var/log/mysql/mysql8.error.log
 bind-address=0.0.0.0
