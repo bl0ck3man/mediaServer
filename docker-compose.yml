@@ -1,6 +1,7 @@
 version: '3.6'
 
 services:
+
   nginx:
     restart: always
     container_name: nginx
@@ -15,6 +16,9 @@ services:
       - ${PROJECT_DIR}/nextcloud/site:/var/www/html
     environment:
       TZ: ${TIMEZONE}
+    links:
+      - nextcloud
+
   mysql8:
     user: "${USER_ID}:${GROUP_ID}"
     container_name: mysql8
@@ -38,6 +42,27 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD=: ${MYSQL_PASSWORD}
+      TZ: ${TIMEZONE}
+
+  nextcloud:
+    hostname: nextcloud
+    privileged: true
+    restart: always
+    container_name: nextcloud
+    networks:
+      static-network:
+        ipv4_address: $NEXTCLOUD_STATIC_IP_ADDRESS
+    build:
+      context: ./images/nextcloud
+      args:
+        - uid=${USER_ID}
+        - gid=${GROUP_ID}
+        - version=${NEXT_CLOUD_VERSION}
+    links:
+      - mysql8
+    volumes:
+      - ${PROJECT_DIR}/nextcloud/site:/var/www/html
+     environment:
       TZ: ${TIMEZONE}
 
 networks:
