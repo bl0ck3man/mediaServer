@@ -62,7 +62,7 @@ services:
       - mysql8
     volumes:
       - ${PROJECT_DIR}/nextcloud/site:/var/www/html
-     environment:
+    environment:
       TZ: ${TIMEZONE}
 
 networks:
