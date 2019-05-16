@@ -70,6 +70,25 @@ services:
     environment:
       TZ: ${TIMEZONE}
 
+  netatalk:
+    hostname: netatalk
+      privileged: true
+      restart: always
+      container_name: netatalk
+      networks:
+        static-network:
+          ipv4_address: $NETATALK_STATIC_IP_ADDRESS
+      image: netatalk
+      volumes:
+        - ${HOME_DIR}/share:/media/share
+        - ./netatalk/afp.conf:/etc/afp.conf
+      environment:
+        AFP_USER: ${AFP_USER}
+        AFP_PASSWORD: ${AFP_PASSWORD}
+        AFP_UID: ${USER_ID}
+        AFP_GID: ${GROUP_ID}
+        TZ: ${TIMEZONE}
+
 networks:
   static-network:
     driver: bridge
