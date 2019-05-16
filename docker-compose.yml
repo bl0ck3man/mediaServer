@@ -84,6 +84,7 @@ services:
       - "548:548"
     volumes:
       - ${HOME_DIR}/share:/media/share
+      - ${HOME_DIR}/cloud:/media/cloud
       - ./netatalk/afp.conf:/etc/afp.conf
     environment:
       AFP_UID: ${USER_ID}
