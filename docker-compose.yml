@@ -78,7 +78,10 @@ services:
       networks:
         static-network:
           ipv4_address: $NETATALK_STATIC_IP_ADDRESS
-      image: netatalk
+      build:
+        context: ./images/netatalk
+        args:
+          - version=${NETATALK_VERSION}
       ports:
         - "548:548"
       volumes:
