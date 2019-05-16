@@ -75,9 +75,9 @@ services:
     privileged: true
     restart: always
     container_name: netatalk
-      networks:
-        static-network:
-          ipv4_address: $NETATALK_STATIC_IP_ADDRESS
+    networks:
+      static-network:
+        ipv4_address: $NETATALK_STATIC_IP_ADDRESS
     build:
       context: ./images/netatalk
       args:
