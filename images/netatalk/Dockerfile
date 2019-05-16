@@ -58,6 +58,8 @@ RUN ./configure \
                    &&  mkdir /media/share
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 COPY afp.conf /etc/afp.conf
 ENV DEBIAN_FRONTEND=newt
 
