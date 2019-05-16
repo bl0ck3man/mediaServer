@@ -75,10 +75,8 @@ services:
     privileged: true
     restart: always
     container_name: netatalk
-    networks:
-      static-network:
-        ipv4_address: $NETATALK_STATIC_IP_ADDRESS
     build:
+      network: host
       context: ./images/netatalk
       args:
         - version=${NETATALK_VERSION}
@@ -88,8 +86,8 @@ services:
       - ${HOME_DIR}/share:/media/share
       - ./netatalk/afp.conf:/etc/afp.conf
     environment:
-      #AFP_USER: ${AFP_USER}
-      #AFP_PASSWORD: ${AFP_PASSWORD}
+      AFP_USER: ${AFP_USER}
+      AFP_PASSWORD: ${AFP_PASSWORD}
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
