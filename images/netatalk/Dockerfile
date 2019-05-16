@@ -41,7 +41,7 @@ RUN ./configure \
         libevent-core-2.0 \
         libwrap0 \
         libtdb1 \
-        libmysqlclient \
+        libmysqlclient20 \
         libcrack2 \
         libdbus-glib-1-2 \
         &&  apt-get --quiet --yes autoclean \
