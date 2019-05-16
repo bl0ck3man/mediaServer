@@ -79,6 +79,8 @@ services:
         static-network:
           ipv4_address: $NETATALK_STATIC_IP_ADDRESS
       image: netatalk
+      ports:
+        - "548:548"
       volumes:
         - ${HOME_DIR}/share:/media/share
         - ./netatalk/afp.conf:/etc/afp.conf
