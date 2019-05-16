@@ -93,6 +93,7 @@ services:
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
+      AVAHI: 1
 
 networks:
   static-network:
