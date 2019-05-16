@@ -86,8 +86,6 @@ services:
       - ${HOME_DIR}/share:/media/share
       - ./netatalk/afp.conf:/etc/afp.conf
     environment:
-      AFP_USER: ${AFP_USER}
-      AFP_PASSWORD: ${AFP_PASSWORD}
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
