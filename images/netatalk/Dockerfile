@@ -60,5 +60,3 @@ RUN ./configure \
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY afp.conf /etc/afp.conf
 ENV DEBIAN_FRONTEND=newt
-
-CMD ["/docker-entrypoint.sh"]
