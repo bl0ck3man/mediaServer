@@ -3,24 +3,24 @@ version: '3.6'
 services:
 
   nginx:
-    restart: always
-    container_name: nginx
-    hostname: nginx
-    networks:
-      static-network:
-        ipv4_address: $NGINX_STATIC_IP_ADDRESS
     image: nginx
-    ports:
-      - "80:80"
+    hostname: nginx
+    container_name: nginx
+    environment:
+      TZ: ${TIMEZONE}
     volumes:
-      - ${PROJECT_DIR}/nextcloud/site:/var/www/html
+      - ${NEXTCLOUD_SITE}:/var/www/html
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ${STORAGE_DIR}/logs:/var/log/nginx
       - ${STORAGE_DIR}/sockets:/var/run
-    environment:
-      TZ: ${TIMEZONE}
+    ports:
+      - "80:80"
+    networks:
+      static-network:
+        ipv4_address: $NGINX_STATIC_IP_ADDRESS
     links:
       - nextcloud
+    restart: always
 
   mysql8:
     user: "${USER_ID}:${GROUP_ID}"
@@ -44,7 +44,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD=: ${MYSQL_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: ${TIMEZONE}
 
   nextcloud:
@@ -64,11 +64,19 @@ services:
     links:
       - mysql8
     volumes:
-      - ${PROJECT_DIR}/nextcloud/site:/var/www/html
+      - $NEXTCLOUD_CONFIG:/var/www/html/config
+      - $NEXTCLOUD_DATA:$NEXTCLOUD_DATA_DIR_CONTAINER
       - ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
       - ${STORAGE_DIR}/sockets:/var/run
     environment:
       TZ: ${TIMEZONE}
+      NEXTCLOUD_DATA_DIR: $NEXTCLOUD_DATA_DIR_CONTAINER
+      NEXTCLOUD_ADMIN_USER: $ADMIN_USER
+      NEXTCLOUD_ADMIN_PASSWORD: $ADMIN_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
 
   netatalk:
     hostname: netatalk
@@ -91,6 +99,23 @@ services:
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
       AVAHI: 1
+
+#  transmission:
+#    image: linuxserver/transmission
+#    container_name: transmission
+#    environment:
+#      PUID: ${USER_ID}
+#      PGID: ${GROUP_ID}
+#      TZ: ${TIMEZONE}
+#    volumes:
+#      - <path to data>:/config
+#      - ${HOME_DIR}/share:/downloads
+#      - ${HOME_DIR}/share:/watch
+#    ports:
+#      - "9091:9091"
+#      - "51413:51413"
+#      - "51413:51413/udp"
+#    restart: unless-stopped
 
 networks:
   static-network:
