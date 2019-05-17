@@ -79,6 +79,7 @@ services:
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD
       MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
+      NEXTCLOUD_TABLE_PREFIX: 'oc'
 
   netatalk:
     hostname: netatalk
