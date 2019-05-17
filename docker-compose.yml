@@ -35,6 +35,7 @@ services:
       args:
         - uid=${USER_ID}
         - gid=${GROUP_ID}
+        - version=$MYSQL_VERSIO
     ports:
       - "3306:3306"
     volumes:

@@ -1,4 +1,6 @@
-FROM mysql:8.0.16
+ARG version
+
+FROM mysql:$version
 
 ARG uid
 ARG gid
