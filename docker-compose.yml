@@ -3,12 +3,7 @@ version: '3.6'
 services:
 
   nginx:
-    build:
-      context: ./images/nginx
-      args:
-        - uid=${USER_ID}
-        - gid=${GROUP_ID}
-        - version=$NGINX_VERSION
+    image: nginx:1.16.0-alpine
     hostname: nginx
     container_name: nginx
     environment:
@@ -72,7 +67,7 @@ services:
       - mysql8
     volumes:
       - $NEXTCLOUD_SITE:/var/www/html
-      - $NEXTCLOUD_DATA:$NEXTCLOUD_DATA_DIR_CONTAINER
+      #- $NEXTCLOUD_DATA:$NEXTCLOUD_DATA_DIR_CONTAINER
       - ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
       - ${STORAGE_DIR}/sockets:/var/run
     environment:
