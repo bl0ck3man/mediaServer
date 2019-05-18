@@ -10,7 +10,7 @@ services:
       TZ: ${TIMEZONE}
     volumes:
       - ${NEXTCLOUD_SITE}:/var/www/html
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/
       - ./nginx/hosts:/etc/nginx/nginx.conf
       - ${STORAGE_DIR}/logs:/var/log/nginx
       - ${STORAGE_DIR}/sockets:/var/run
