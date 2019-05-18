@@ -102,7 +102,7 @@ services:
     volumes:
       - ${HOME_DIR}/share:/media/share
       - ${HOME_DIR}/cloud:/media/cloud
-      - ./netatalk/afp.conf:/etc/afp.conf
+      #- ./netatalk/afp.conf:/etc/afp.conf
       #- ./netatalk/afpd.service:/etc/avahi/services/afpd.service
       #- ./netatalk/avahi-daemon.conf:/etc/avahi/avahi-daemon.conf
     environment:
