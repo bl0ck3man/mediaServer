@@ -109,7 +109,7 @@ services:
       #AFP_UID: ${USER_ID}
       #AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
-      AVAHI: 1
+      #AVAHI: 1
 
 #  transmission:
 #    image: linuxserver/transmission
