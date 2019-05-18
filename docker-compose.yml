@@ -3,7 +3,12 @@ version: '3.6'
 services:
 
   nginx:
-    image: nginx:$NGINX_VERSION
+    build:
+      context: ./images/nginx
+      args:
+        - uid=${USER_ID}
+        - gid=${GROUP_ID}
+        - version=$NGINX_VERSION
     hostname: nginx
     container_name: nginx
     environment:
