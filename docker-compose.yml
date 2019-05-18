@@ -102,6 +102,7 @@ services:
       - ./netatalk/afpd.service:/etc/avahi/services/afpd.service
       #- ./netatalk/avahi-daemon.conf:/etc/avahi/avahi-daemon.conf
     environment:
+      AFP_USER: ${AFP_USER}
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
