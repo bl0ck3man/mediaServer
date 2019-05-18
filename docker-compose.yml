@@ -107,22 +107,22 @@ services:
       TZ: ${TIMEZONE}
       AVAHI: '1'
 
-#  transmission:
-#    image: linuxserver/transmission
-#    container_name: transmission
-#    environment:
-#      PUID: ${USER_ID}
-#      PGID: ${GROUP_ID}
-#      TZ: ${TIMEZONE}
-#    volumes:
-#      - <path to data>:/config
-#      - ${HOME_DIR}/share:/downloads
-#      - ${HOME_DIR}/share:/watch
-#    ports:
-#      - "9091:9091"
-#      - "51413:51413"
-#      - "51413:51413/udp"
-#    restart: unless-stopped
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      PUID: ${USER_ID}
+      PGID: ${GROUP_ID}
+      TZ: ${TIMEZONE}
+      volumes:
+       - ./transmission:/config
+       - ${HOME_DIR}/share:/downloads
+       #- ${HOME_DIR}/share:/watch
+     ports:
+       - "9091:9091"
+       - "51413:51413"
+       - "51413:51413/udp"
+     restart: unless-stopped
 
 networks:
   static-network:
