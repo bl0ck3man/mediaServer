@@ -127,6 +127,24 @@ services:
        - "51413:51413/udp"
     restart: unless-stopped
 
+  samba:
+    build:
+      context: ./images/samba
+    hostname: samba
+    container_name: samba
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+       - ${HOME_DIR}/share:/media/share
+       - ${HOME_DIR}/cloud:/media/cloud
+       - ./samba/smb.conf:/etc/samba/smb.conf
+       - ./netatalk/passwd:/etc/passwd
+       - ./netatalk/shadow:/etc/shadow
+    ports:
+      - "445:445"
+    network_mode: host
+    restart: always
+
 networks:
   static-network:
     driver: bridge
