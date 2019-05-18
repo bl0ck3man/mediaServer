@@ -118,11 +118,11 @@ services:
        - ./transmission:/config
        - ${HOME_DIR}/share:/downloads
        #- ${HOME_DIR}/share:/watch
-     ports:
+    ports:
        - "9091:9091"
        - "51413:51413"
        - "51413:51413/udp"
-     restart: unless-stopped
+    restart: unless-stopped
 
 networks:
   static-network:
