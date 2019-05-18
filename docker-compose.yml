@@ -100,8 +100,7 @@ services:
       - ${HOME_DIR}/share:/media/share
       - ${HOME_DIR}/cloud:/media/cloud
       - ./netatalk/afp.conf:/etc/afp.conf
-      - ./netatalk/passwd:/etc/passwd
-      - ./netatalk/shadow:/etc/shadow
+      - ./netatalk/etc:/etc
     environment:
       AFP_USER: ${AFP_USER}
       AFP_PASSWORD: ${ADMIN_PASSWORD}
