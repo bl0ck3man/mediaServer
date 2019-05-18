@@ -106,7 +106,6 @@ services:
       #AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
       AVAHI: '1'
-
   transmission:
     image: linuxserver/transmission
     container_name: transmission
@@ -114,8 +113,8 @@ services:
       PUID: ${USER_ID}
       PGID: ${GROUP_ID}
       TZ: ${TIMEZONE}
-      volumes:
-       #- ./transmission:/config
+    volumes:
+       - ./transmission:/config
        - ${HOME_DIR}/share:/downloads
        #- ${HOME_DIR}/share:/watch
     ports:
