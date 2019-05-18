@@ -74,7 +74,7 @@ services:
       - $NEXTCLOUD_SITE:/var/www/html
       - $NEXTCLOUD_CONFIG:/var/www/html/config
       - $NEXTCLOUD_DATA:$NEXTCLOUD_DATA_DIR_CONTAINER
-      - ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      #- ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
       - ${STORAGE_DIR}/sockets:/var/run
     environment:
       TZ: ${TIMEZONE}
