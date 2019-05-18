@@ -1,9 +1,8 @@
 ARG version
-
-FROM nginx:1.16.0-alpine
-
 ARG uid
 ARG gid
+
+FROM nginx:$version
 
 RUN apk --no-cache add shadow
 RUN usermod -u $uid www-data
