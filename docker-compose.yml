@@ -102,6 +102,7 @@ services:
       - ./netatalk/afp.conf:/etc/afp.conf
     environment:
       AFP_USER: ${AFP_USER}
+      AFP_PASSWORD: ${ADMIN_PASSWORD}
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
