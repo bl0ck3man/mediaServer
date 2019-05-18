@@ -93,6 +93,7 @@ services:
     restart: always
     container_name: netatalk
     image: cptactionhank/netatalk:latest
+    network_mode: host
     ports:
       - "548:548"
     volumes:
