@@ -104,6 +104,7 @@ services:
       - ${HOME_DIR}/cloud:/media/cloud
       - ./netatalk/afp.conf:/etc/afp.conf
       - ./netatalk/afpd.service:/etc/avahi/services/afpd.service
+      - ./netatalk/avahi-daemon.conf:/etc/avahi/avahi-daemon.conf
     environment:
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
