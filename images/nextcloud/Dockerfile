@@ -5,7 +5,6 @@ FROM nextcloud:$version
 ARG uid
 ARG gid
 
-RUN usermod -u $uid www-data && \
-    groupmod -g $gid www-data
+RUN apk --no-cache add shadow && usermod -u $uid www-data && groupmod -g $gid www-data && del shadow
 
-WORKDIR /var/www/html
+WORKDIR /var/www/nextcloud
