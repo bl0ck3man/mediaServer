@@ -138,9 +138,9 @@ services:
     volumes:
        - ${HOME_DIR}/share:/media/share
        - ${HOME_DIR}/cloud:/media/cloud
-       - ./samba/smb.conf:/etc/samba/smb.conf
-       - ./netatalk/passwd:/etc/passwd
-       - ./netatalk/shadow:/etc/shadow
+       #- ./samba/smb.conf:/etc/samba/smb.conf
+       #- ./netatalk/passwd:/etc/passwd
+       #- ./netatalk/shadow:/etc/shadow
     ports:
       - "137:137/udp"
       - "138:138/udp"
