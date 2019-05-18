@@ -3,7 +3,7 @@ version: '3.6'
 services:
 
   nginx:
-    image: nginx
+    image: nginx:$NGINX_VERSION
     hostname: nginx
     container_name: nginx
     user: "${USER_ID}:${GROUP_ID}"
