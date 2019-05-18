@@ -139,7 +139,8 @@ services:
        - ./samba/smb.conf:/etc/samba/smb.conf
        - ./netatalk/passwd:/etc/passwd
        - ./netatalk/shadow:/etc/shadow
-    network_mode: host
+    ports:
+      - "445:445"
     restart: always
 
 networks:
