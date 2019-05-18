@@ -6,7 +6,6 @@ services:
     image: nginx:$NGINX_VERSION
     hostname: nginx
     container_name: nginx
-    user: "${USER_ID}:${GROUP_ID}"
     environment:
       TZ: ${TIMEZONE}
     volumes:
