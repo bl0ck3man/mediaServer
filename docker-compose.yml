@@ -142,7 +142,6 @@ services:
        #- ./netatalk/passwd:/etc/passwd
        #- ./netatalk/shadow:/etc/shadow
     ports:
-      - "137:137/udp"
       - "139:139/tcp"
       - "445:445/tcp"
     network_mode: bridge
