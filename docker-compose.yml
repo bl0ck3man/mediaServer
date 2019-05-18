@@ -117,7 +117,7 @@ services:
       PGID: ${GROUP_ID}
       TZ: ${TIMEZONE}
     volumes:
-       - ./transmission:/config
+       - ./transmission/settings.json:/config/settings.json
        - ${HOME_DIR}/share:/downloads
        #- ${HOME_DIR}/share:/watch
     ports:
