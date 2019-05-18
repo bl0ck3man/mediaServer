@@ -103,6 +103,7 @@ services:
       - ${HOME_DIR}/share:/media/share
       - ${HOME_DIR}/cloud:/media/cloud
       - ./netatalk/afp.conf:/etc/afp.conf
+      - ./netatalk/afpd.service:/etc/avahi/services/afpd.service
     environment:
       AFP_UID: ${USER_ID}
       AFP_GID: ${GROUP_ID}
