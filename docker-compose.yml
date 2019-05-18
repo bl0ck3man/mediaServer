@@ -128,23 +128,18 @@ services:
     restart: unless-stopped
 
   samba:
-    build:
-      context: ./images/samba
+    image: stanback/alpine-samba
     hostname: samba
-    tty: true
     container_name: samba
     environment:
       TZ: ${TIMEZONE}
     volumes:
        - ${HOME_DIR}/share:/media/share
        - ${HOME_DIR}/cloud:/media/cloud
-       #- ./samba/smb.conf:/etc/samba/smb.conf
-       #- ./netatalk/passwd:/etc/passwd
-       #- ./netatalk/shadow:/etc/shadow
-    ports:
-      - "139:139/tcp"
-      - "445:445/tcp"
-    network_mode: bridge
+       - ./samba/smb.conf:/etc/samba/smb.conf
+       - ./netatalk/passwd:/etc/passwd
+       - ./netatalk/shadow:/etc/shadow
+    network_mode: host
     restart: always
 
 networks:
