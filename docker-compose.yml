@@ -6,6 +6,7 @@ services:
     image: nginx
     hostname: nginx
     container_name: nginx
+    user: "${USER_ID}:${GROUP_ID}"
     environment:
       TZ: ${TIMEZONE}
     volumes:
@@ -35,7 +36,7 @@ services:
       args:
         - uid=${USER_ID}
         - gid=${GROUP_ID}
-        - version=$MYSQL_VERSIO
+        - version=$MYSQL_VERSION
     ports:
       - "3306:3306"
     volumes:
