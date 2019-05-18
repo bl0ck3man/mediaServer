@@ -1,8 +1,9 @@
 ARG version
-ARG uid
-ARG gid
 
 FROM nginx:$version
+
+ARG uid
+ARG gid
 
 RUN apk --no-cache add shadow
 RUN usermod -u $uid www-data
