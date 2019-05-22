@@ -148,7 +148,6 @@ services:
     container_name: aceproxy
     hostname: aceproxy
     image: ikatson/aceproxy:latest
-    network_mode: host
     ports:
       - "8000:8000"
 
