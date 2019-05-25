@@ -139,7 +139,7 @@ services:
     volumes:
        - ${HOME_DIR}/share:/media/share
        - ${HOME_DIR}/cloud:/media/cloud
-      # - ./samba/smb.conf:/etc/samba/smb.conf
+       - ./samba/smb.conf:/etc/samba/smb.conf
     restart: always
 
   plex:
