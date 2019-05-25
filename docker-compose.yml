@@ -147,9 +147,12 @@ services:
     restart: always
     container_name: aceproxy
     hostname: aceproxy
-    image: ikatson/aceproxy:latest
+    build:
+      context: ./images/acestream
     ports:
-      - "8000:8000"
+      - "6878:6878"
+    tmpfs:
+      - "/dev/disk/by-id:noexec,rw,size=4k"
 
 networks:
   static-network:
