@@ -140,8 +140,6 @@ services:
        - ${HOME_DIR}/share:/media/share
        - ${HOME_DIR}/cloud:/media/cloud
        - ./samba/smb.conf:/etc/samba/smb.conf
-       - ./samba/passwd:/etc/passwd
-       - ./samba/shadow:/etc/shadow
     restart: always
 
   plex:
