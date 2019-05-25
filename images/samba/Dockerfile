@@ -1,11 +1,18 @@
+FROM alpine:edge
+
 ARG uid
 ARG gid
 
-FROM stanback:alpine-samba
+RUN apk add --update \
+    samba-common-tools \
+    samba-client \
+    samba-server \
+    && rm -rf /var/cache/apk/*
 
 RUN addgroup -g $gid -S smbgrp \
 	&& adduser -u $uid -D -S -G smbgrp smbgrp \
 
-#EXPOSE 445/tcp
+EXPOSE 445/tcp
 
-#CMD ["smbd", "--foreground", "--log-stdout"]
+ENTRYPOINT ["smbd", "--foreground", "--log-stdout"]
+CMD []
