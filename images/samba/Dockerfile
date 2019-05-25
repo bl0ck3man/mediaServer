@@ -10,7 +10,7 @@ RUN apk add --update \
     && rm -rf /var/cache/apk/*
 
 RUN addgroup -g $gid -S smbgrp \
-	&& adduser -u $uid -D -S -G smbgrp smbgrp \
+	&& adduser -u $uid -D -S -G smbgrp smbgrp
 
 EXPOSE 445/tcp
 
