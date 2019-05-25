@@ -153,7 +153,7 @@ services:
       - VERSION=docker
     volumes:
       - /plex/config:/config
-      #- /plex/plugins:/config
+      - /plex/plugins:/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins
       - ${PLEX_VIDEO}:/data/movies
     restart: unless-stopped
 
