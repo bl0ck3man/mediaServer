@@ -127,7 +127,7 @@ services:
 
   samba:
     build:
-      context: ./images/php73
+      context: ./images/samba
       args:
         - uid=${USER_ID}
         - gid=${GROUP_ID}
