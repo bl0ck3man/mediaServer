@@ -155,6 +155,7 @@ services:
       - ./plex/config:/config
       #- ./plex/plugins:/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins
       - ${PLEX_VIDEO}:/data/movies
+      - ./plex/playlists:/data/playlists
     restart: unless-stopped
 
   aceproxy:
