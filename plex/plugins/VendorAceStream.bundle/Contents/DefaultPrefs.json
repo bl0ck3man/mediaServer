@@ -1,0 +1,8 @@
+[
+    {
+        "id":       "playlist",
+        "label":    "Playlist URL (requires restart)",
+        "type":     "text",
+        "default":  ""
+    }
+]
