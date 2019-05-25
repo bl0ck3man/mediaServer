@@ -152,8 +152,8 @@ services:
       - PGID=${GROUP_ID}
       - VERSION=docker
     volumes:
-      - /plex/config:/config
-      - /plex/plugins:/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins
+      - ./plex/config:/config
+      - ./plex/plugins:/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins
       - ${PLEX_VIDEO}:/data/movies
     restart: unless-stopped
 
