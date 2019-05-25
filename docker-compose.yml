@@ -129,8 +129,8 @@ services:
     build:
       context: ./images/samba
       args:
-        - uid=${USER_ID}
-        - gid=${GROUP_ID}
+        - uid=$USER_ID
+        - gid=$GROUP_ID
     hostname: samba
     container_name: samba
     network_mode: host
