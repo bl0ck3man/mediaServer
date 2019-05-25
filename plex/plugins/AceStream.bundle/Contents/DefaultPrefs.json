@@ -1,0 +1,20 @@
+[
+    {
+        "id":       "ace_host",
+        "label":    "Hostname for the AceStream Engine HTTP API",
+        "type":     "text",
+        "default":  "127.0.0.1"
+    },
+    {
+        "id":       "ace_port",
+        "label":    "Port for the AceStream Engine HTTP API",
+        "type":     "text",
+        "default":  "6878"
+    },
+    {
+        "id":       "stream_id",
+        "label":    "The specified AceStream ID you want to play, it will be added to the directory list",
+        "type":     "text",
+        "default":  ""
+    }
+]
