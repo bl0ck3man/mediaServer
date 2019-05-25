@@ -1,0 +1,20 @@
+[
+    {
+        "id":       "ace_host",
+        "label":    "Hostname for the acestream application",
+        "type":     "text",
+        "default":  "127.0.0.1"
+    },
+    {
+        "id":       "ace_port",
+        "label":    "Port for the acestream application",
+        "type":     "text",
+        "default":  "6878"
+    },
+    {
+        "id":       "acestreamsearch_terms",
+        "label":    "Comma separated search terms for acestreamsearch.com",
+        "type":     "text",
+        "default":  "Sky Sport,Football,Calcio"
+    },
+]
