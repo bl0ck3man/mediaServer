@@ -1,10 +1,11 @@
-FROM alpine:3.9
+FROM stanback:alpine-samba
 
-RUN apk add --no-cache --update \
-    samba-common-tools \
-    samba-client \
-    samba-server
+ARG uid
+ARG gid
 
-EXPOSE 445/tcp
+RUN addgroup -g $gid -S smbgrp \
+	&& adduser -u $uid -D -S -G smbgrp smbgrp \
 
-CMD ["smbd", "--foreground", "--log-stdout"]
+#EXPOSE 445/tcp
+
+#CMD ["smbd", "--foreground", "--log-stdout"]

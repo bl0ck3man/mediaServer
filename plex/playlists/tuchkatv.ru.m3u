@@ -1,5 +1,3 @@
 #EXTM3U
-#EXTINF:0,Первый HD ДОК
-#EXTVLCOPT:deinterlace=-1
-#EXTVLCOPT:deinterlace-mode=yadif
+#EXTINF:0,Первый HD
 http://192.168.1.100:6878/ace/getstream?id=ee3ce944fa3a5f49428240d363ffc368454c6b72&.mp4

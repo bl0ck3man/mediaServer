@@ -87,7 +87,6 @@ services:
         MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
         NEXTCLOUD_TABLE_PREFIX: 'oc'
 
-
   netatalk:
     hostname: netatalk
     privileged: true
@@ -95,8 +94,6 @@ services:
     container_name: netatalk
     image: cptactionhank/netatalk:latest
     network_mode: host
-    ports:
-      - "548:548"
     volumes:
       - ${HOME_DIR}/share:/media/share
       - ${HOME_DIR}/cloud:/media/cloud
@@ -110,6 +107,7 @@ services:
       AFP_GID: ${GROUP_ID}
       TZ: ${TIMEZONE}
       AVAHI: '1'
+
   transmission:
     image: linuxserver/transmission
     container_name: transmission
@@ -128,19 +126,22 @@ services:
     restart: unless-stopped
 
   samba:
-    image: stanback/alpine-samba
+    build:
+      context: ./images/php73
+      args:
+        - uid=${USER_ID}
+        - gid=${GROUP_ID}
     hostname: samba
     container_name: samba
+    network_mode: host
     environment:
       TZ: ${TIMEZONE}
     volumes:
        - ${HOME_DIR}/share:/media/share
        - ${HOME_DIR}/cloud:/media/cloud
        - ./samba/smb.conf:/etc/samba/smb.conf
-       - ./netatalk/passwd:/etc/passwd
-       - ./netatalk/shadow:/etc/shadow
-    ports:
-      - "445:445"
+       - ./samba/passwd:/etc/passwd
+       - ./samba/shadow:/etc/shadow
     restart: always
 
   plex:
@@ -153,9 +154,8 @@ services:
       - VERSION=docker
     volumes:
       - ./plex/config:/config
-      #- ./plex/plugins:/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins
-      - ${PLEX_VIDEO}:/data/movies
       - ./plex/playlists:/data/playlists
+      - ${PLEX_VIDEO}:/data/movies
     restart: unless-stopped
 
   aceproxy:
