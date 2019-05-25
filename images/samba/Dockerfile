@@ -9,8 +9,8 @@ RUN apk add --update \
     samba-server \
     && rm -rf /var/cache/apk/*
 
-RUN addgroup -g $gid -S smbgrp \
-	&& adduser -u $uid -D -S -G smbgrp smbgrp
+RUN addgroup -g $gid -S samba \
+	&& adduser -u $uid -D -S -G samba samba
 
 EXPOSE 445/tcp
 
