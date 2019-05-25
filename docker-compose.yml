@@ -133,7 +133,8 @@ services:
         - gid=$GROUP_ID
     hostname: samba
     container_name: samba
-    network_mode: host
+    ports:
+      - "445:445"
     environment:
       TZ: ${TIMEZONE}
     volumes:
