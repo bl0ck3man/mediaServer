@@ -20,7 +20,7 @@ services:
       - ${STORAGE_DIR}/logs:/var/log/nginx
       - ${STORAGE_DIR}/sockets:/var/run
     ports:
-      - "9000:80"
+      - "9000:9000"
     networks:
       static-network:
         ipv4_address: $NGINX_STATIC_IP_ADDRESS
