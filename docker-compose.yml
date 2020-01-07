@@ -87,7 +87,7 @@ services:
         MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
         NEXTCLOUD_TABLE_PREFIX: 'oc'
       ports:
-        - "9000:9000"
+        - "9000:80"
 
   netatalk:
     hostname: netatalk
