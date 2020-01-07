@@ -2,31 +2,31 @@ version: '3.6'
 
 services:
 
-  nginx:
-    build:
-      context: ./images/nginx
-      args:
-        - uid=${USER_ID}
-        - gid=${GROUP_ID}
-        - version=$NGINX_VERSION
-    hostname: nginx
-    container_name: nginx
-    environment:
-      TZ: ${TIMEZONE}
-    volumes:
-      - ${NEXTCLOUD_SITE}:/var/www/html
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/hosts:/etc/nginx/conf.d
-      - ${STORAGE_DIR}/logs:/var/log/nginx
-      - ${STORAGE_DIR}/sockets:/var/run
-    ports:
-      - "9000:9000"
-    networks:
-      static-network:
-        ipv4_address: $NGINX_STATIC_IP_ADDRESS
-    links:
-      - nextcloud
-    restart: always
+#  nginx:
+#    build:
+#      context: ./images/nginx
+#      args:
+#        - uid=${USER_ID}
+#        - gid=${GROUP_ID}
+#        - version=$NGINX_VERSION
+#    hostname: nginx
+#    container_name: nginx
+#    environment:
+#      TZ: ${TIMEZONE}
+#    volumes:
+#      - ${NEXTCLOUD_SITE}:/var/www/html
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./nginx/hosts:/etc/nginx/conf.d
+#      - ${STORAGE_DIR}/logs:/var/log/nginx
+#      - ${STORAGE_DIR}/sockets:/var/run
+#    ports:
+#      - "9000:9000"
+#    networks:
+#      static-network:
+#        ipv4_address: $NGINX_STATIC_IP_ADDRESS
+#    links:
+#      - nextcloud
+#    restart: always
 
   mysql8:
     user: "${USER_ID}:${GROUP_ID}"
@@ -86,6 +86,8 @@ services:
         MYSQL_PASSWORD: $MYSQL_PASSWORD
         MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
         NEXTCLOUD_TABLE_PREFIX: 'oc'
+      ports:
+        - "9000:9000"
 
   netatalk:
     hostname: netatalk
