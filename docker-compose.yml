@@ -109,7 +109,7 @@ services:
       AVAHI: '1'
 
   transmission:
-    image: linuxserver/transmission
+    image: linuxserver/transmission:2.94-r2-ls40
     container_name: transmission
     environment:
       PUID: ${USER_ID}
