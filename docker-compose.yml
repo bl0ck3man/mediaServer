@@ -141,6 +141,7 @@ services:
        - ${HOME_DIR}/cloud:/media/cloud
        - ./samba/smb.conf:/etc/samba/smb.conf
     restart: always
+    network_mode: host
     ports:
       - "445:445"
 
