@@ -142,6 +142,7 @@ services:
        - ./samba/smb.conf:/etc/samba/smb.conf
     restart: always
     network_mode: host
+    privileged: true
     ports:
       - "445:445"
 
