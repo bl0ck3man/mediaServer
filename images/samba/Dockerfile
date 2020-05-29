@@ -1,4 +1,4 @@
-FROM stanback/alpine-samba
+FROM stanback/alpine-samba:latest
 
 ARG uid
 ARG gid
