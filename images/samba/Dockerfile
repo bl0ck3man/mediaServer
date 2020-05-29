@@ -1,4 +1,4 @@
-FROM stanback/alpine-samba
+FROM dperson/samba
 
 ARG uid
 ARG gid
