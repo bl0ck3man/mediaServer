@@ -145,6 +145,7 @@ services:
     privileged: true
     ports:
       - "445:445"
+      - "139:139"
 
   plex:
     image: linuxserver/plex
