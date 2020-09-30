@@ -97,7 +97,6 @@ services:
     volumes:
       - ${HOME_DIR}/share:/media/share
       - ${HOME_DIR}/cloud:/media/cloud
-      - ${HOME_DIR}/toshiba:/media/toshiba
       - ./netatalk/afp.conf:/etc/afp.conf
       - ./netatalk/passwd:/etc/passwd
       - ./netatalk/shadow:/etc/shadow
