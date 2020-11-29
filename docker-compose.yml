@@ -87,26 +87,26 @@ services:
 #        MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
 #        NEXTCLOUD_TABLE_PREFIX: 'oc'
 
-  netatalk:
-    hostname: netatalk
-    privileged: true
-    restart: always
-    container_name: netatalk
-    image: cptactionhank/netatalk:latest
-    network_mode: host
-    volumes:
-      - ${HOME_DIR}/share:/media/share
-      - ${HOME_DIR}/cloud:/media/cloud
-      - ./netatalk/afp.conf:/etc/afp.conf
-      - ./netatalk/passwd:/etc/passwd
-      - ./netatalk/shadow:/etc/shadow
-    environment:
-      AFP_USER: ${AFP_USER}
-      AFP_PASSWORD: ${ADMIN_PASSWORD}
-      AFP_UID: ${USER_ID}
-      AFP_GID: ${GROUP_ID}
-      TZ: ${TIMEZONE}
-      AVAHI: '1'
+#  netatalk:
+#    hostname: netatalk
+#    privileged: true
+#    restart: always
+#    container_name: netatalk
+#    image: cptactionhank/netatalk:latest
+#    network_mode: host
+#    volumes:
+#      - ${HOME_DIR}/share:/media/share
+#      - ${HOME_DIR}/cloud:/media/cloud
+#      - ./netatalk/afp.conf:/etc/afp.conf
+#      - ./netatalk/passwd:/etc/passwd
+#      - ./netatalk/shadow:/etc/shadow
+#    environment:
+#      AFP_USER: ${AFP_USER}
+#      AFP_PASSWORD: ${ADMIN_PASSWORD}
+#      AFP_UID: ${USER_ID}
+#      AFP_GID: ${GROUP_ID}
+#      TZ: ${TIMEZONE}
+#      AVAHI: '1'
 
   transmission:
     image: linuxserver/transmission:2.94-r3-ls53
@@ -125,26 +125,26 @@ services:
        - "51413:51413/udp"
     restart: unless-stopped
 
-#  samba:
-#    build:
-#      context: ./images/samba
-#      args:
-#        - uid=$USER_ID
-#        - gid=$GROUP_ID
-#    hostname: samba
-#    container_name: samba
-#    environment:
-#      TZ: ${TIMEZONE}
-#    volumes:
-#       - ${HOME_DIR}/share:/media/share
-#       - ${HOME_DIR}/cloud:/media/cloud
-#       - ./samba/smb.conf:/etc/samba/smb.conf
-#    restart: always
-#    network_mode: host
-#    privileged: true
-#    ports:
-#      - "445:445"
-#      - "139:139"
+  samba:
+    build:
+      context: ./images/samba
+      args:
+        - uid=$USER_ID
+        - gid=$GROUP_ID
+    hostname: samba
+    container_name: samba
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+       - ${HOME_DIR}/share:/media/share
+       - ${HOME_DIR}/cloud:/media/cloud
+       - ./samba/smb.conf:/etc/samba/smb.conf
+    restart: always
+    network_mode: host
+    privileged: true
+    ports:
+      - "445:445"
+      - "139:139"
 
 #  plex:
 #    image: linuxserver/plex
