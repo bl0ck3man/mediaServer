@@ -145,8 +145,10 @@ services:
     network_mode: host
     privileged: true
     ports:
-      - "445:445"
-      - "139:139"
+      - "137:137/udp"
+      - "138:138/udp"
+      - "139:139/tcp"
+      - "445:445/tcp"
 
 #  plex:
 #    image: linuxserver/plex
