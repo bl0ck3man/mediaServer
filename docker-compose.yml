@@ -2,90 +2,90 @@ version: '3.6'
 
 services:
 
-  nginx:
-    build:
-      context: ./images/nginx
-      args:
-        - uid=${USER_ID}
-        - gid=${GROUP_ID}
-        - version=$NGINX_VERSION
-    hostname: nginx
-    container_name: nginx
-    environment:
-      TZ: ${TIMEZONE}
-    volumes:
-      - ${NEXTCLOUD_SITE}:/var/www/html
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/hosts:/etc/nginx/conf.d
-      - ${STORAGE_DIR}/logs:/var/log/nginx
-      - ${STORAGE_DIR}/sockets:/var/run
-    ports:
-      - "9000:9000"
-    networks:
-      static-network:
-        ipv4_address: $NGINX_STATIC_IP_ADDRESS
-    links:
-      - nextcloud
-    restart: always
+#  nginx:
+#    build:
+#      context: ./images/nginx
+#      args:
+#        - uid=${USER_ID}
+#        - gid=${GROUP_ID}
+#        - version=$NGINX_VERSION
+#    hostname: nginx
+#    container_name: nginx
+#    environment:
+#      TZ: ${TIMEZONE}
+#    volumes:
+#      - ${NEXTCLOUD_SITE}:/var/www/html
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./nginx/hosts:/etc/nginx/conf.d
+#      - ${STORAGE_DIR}/logs:/var/log/nginx
+#      - ${STORAGE_DIR}/sockets:/var/run
+#    ports:
+#      - "9000:9000"
+#    networks:
+#      static-network:
+#        ipv4_address: $NGINX_STATIC_IP_ADDRESS
+#   links:
+#      - nextcloud
+#    restart: always
 
-  mysql8:
-    user: "${USER_ID}:${GROUP_ID}"
-    container_name: mysql8
-    hostname: mysql8
-    networks:
-      static-network:
-        ipv4_address: $MYSQL8_STATIC_IP_ADDRESS
-    restart: always
-    build:
-      context: ./images/mysql8
-      args:
-        - uid=${USER_ID}
-        - gid=${GROUP_ID}
-        - version=$MYSQL_VERSION
-    ports:
-      - "3306:3306"
-    volumes:
-      - ${STORAGE_DIR}/databases/mysql8:/var/lib/mysql
-      - ./mysql8/conf.d:/etc/mysql/conf.d
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      TZ: ${TIMEZONE}
+#  mysql8:
+#    user: "${USER_ID}:${GROUP_ID}"
+#    container_name: mysql8
+#    hostname: mysql8
+#    networks:
+#      static-network:
+#        ipv4_address: $MYSQL8_STATIC_IP_ADDRESS
+#    restart: always
+#    build:
+#      context: ./images/mysql8
+#      args:
+#        - uid=${USER_ID}
+#        - gid=${GROUP_ID}
+#        - version=$MYSQL_VERSION
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - ${STORAGE_DIR}/databases/mysql8:/var/lib/mysql
+#      - ./mysql8/conf.d:/etc/mysql/conf.d
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#      TZ: ${TIMEZONE}
 
-  nextcloud:
-      hostname: nextcloud
-      privileged: true
-      restart: always
-      container_name: nextcloud
-      networks:
-        static-network:
-          ipv4_address: $NEXTCLOUD_STATIC_IP_ADDRESS
-      build:
-        context: ./images/nextcloud
-        args:
-          - uid=${USER_ID}
-          - gid=${GROUP_ID}
-          - version=${NEXT_CLOUD_VERSION}
-      links:
-        - mysql8
-      volumes:
-        - $NEXTCLOUD_SITE:/var/www/html
-        - $NEXTCLOUD_CONFIG:/var/www/html/config
-        - $NEXTCLOUD_DATA:$NEXTCLOUD_DATA_DIR_CONTAINER
-        - ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
-        - ${STORAGE_DIR}/sockets:/var/run
-      environment:
-        TZ: ${TIMEZONE}
-        NEXTCLOUD_DATA_DIR: $NEXTCLOUD_DATA_DIR_CONTAINER
-        NEXTCLOUD_ADMIN_USER: $ADMIN_USER
-        NEXTCLOUD_ADMIN_PASSWORD: $ADMIN_PASSWORD
-        MYSQL_DATABASE: $MYSQL_DATABASE
-        MYSQL_USER: $MYSQL_USER
-        MYSQL_PASSWORD: $MYSQL_PASSWORD
-        MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
-        NEXTCLOUD_TABLE_PREFIX: 'oc'
+#  nextcloud:
+#      hostname: nextcloud
+#      privileged: true
+#      restart: always
+#      container_name: nextcloud
+#      networks:
+#        static-network:
+#          ipv4_address: $NEXTCLOUD_STATIC_IP_ADDRESS
+#      build:
+#        context: ./images/nextcloud
+#        args:
+#          - uid=${USER_ID}
+#          - gid=${GROUP_ID}
+#          - version=${NEXT_CLOUD_VERSION}
+#      links:
+#        - mysql8
+#      volumes:
+#        - $NEXTCLOUD_SITE:/var/www/html
+#        - $NEXTCLOUD_CONFIG:/var/www/html/config
+#        - $NEXTCLOUD_DATA:$NEXTCLOUD_DATA_DIR_CONTAINER
+#        - ./images/nextcloud/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+#        - ${STORAGE_DIR}/sockets:/var/run
+#      environment:
+#        TZ: ${TIMEZONE}
+#        NEXTCLOUD_DATA_DIR: $NEXTCLOUD_DATA_DIR_CONTAINER
+#        NEXTCLOUD_ADMIN_USER: $ADMIN_USER
+#        NEXTCLOUD_ADMIN_PASSWORD: $ADMIN_PASSWORD
+#        MYSQL_DATABASE: $MYSQL_DATABASE
+#        MYSQL_USER: $MYSQL_USER
+#        MYSQL_PASSWORD: $MYSQL_PASSWORD
+#        MYSQL_HOST: $MYSQL8_STATIC_IP_ADDRESS
+#        NEXTCLOUD_TABLE_PREFIX: 'oc'
 
   netatalk:
     hostname: netatalk
@@ -125,51 +125,51 @@ services:
        - "51413:51413/udp"
     restart: unless-stopped
 
-  samba:
-    build:
-      context: ./images/samba
-      args:
-        - uid=$USER_ID
-        - gid=$GROUP_ID
-    hostname: samba
-    container_name: samba
-    environment:
-      TZ: ${TIMEZONE}
-    volumes:
-       - ${HOME_DIR}/share:/media/share
-       - ${HOME_DIR}/cloud:/media/cloud
-       - ./samba/smb.conf:/etc/samba/smb.conf
-    restart: always
-    network_mode: host
-    privileged: true
-    ports:
-      - "445:445"
-      - "139:139"
+#  samba:
+#    build:
+#      context: ./images/samba
+#      args:
+#        - uid=$USER_ID
+#        - gid=$GROUP_ID
+#    hostname: samba
+#    container_name: samba
+#    environment:
+#      TZ: ${TIMEZONE}
+#    volumes:
+#       - ${HOME_DIR}/share:/media/share
+#       - ${HOME_DIR}/cloud:/media/cloud
+#       - ./samba/smb.conf:/etc/samba/smb.conf
+#    restart: always
+#    network_mode: host
+#    privileged: true
+#    ports:
+#      - "445:445"
+#      - "139:139"
 
-  plex:
-    image: linuxserver/plex
-    container_name: plex
-    network_mode: host
-    environment:
-      - PLEX_UID=${USER_ID}
-      - PLEX_GID=${GROUP_ID}
-      - VERSION=docker
-    volumes:
-      - ./plex/config:/config
-      - ./plex/playlists:/data/playlists
-      - ${PLEX_VIDEO}:/data/movies
-    restart: unless-stopped
+#  plex:
+#    image: linuxserver/plex
+#    container_name: plex
+#    network_mode: host
+#    environment:
+#      - PLEX_UID=${USER_ID}
+#      - PLEX_GID=${GROUP_ID}
+#      - VERSION=docker
+#    volumes:
+#      - ./plex/config:/config
+#      - ./plex/playlists:/data/playlists
+#      - ${PLEX_VIDEO}:/data/movies
+#    restart: unless-stopped
 
-  aceproxy:
-    restart: always
-    container_name: aceproxy
-    hostname: aceproxy
-    build:
-      context: ./images/acestream
-    ports:
-      - "6878:6878"
-    tmpfs:
-      - "/dev/disk/by-id:noexec,rw,size=4k"
+#  aceproxy:
+#    restart: always
+#    container_name: aceproxy
+#    hostname: aceproxy
+#    build:
+#      context: ./images/acestream
+#    ports:
+#      - "6878:6878"
+#    tmpfs:
+#      - "/dev/disk/by-id:noexec,rw,size=4k"
 
 networks:
   static-network:
