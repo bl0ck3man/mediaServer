@@ -148,6 +148,14 @@ services:
 #      - "6878:6878"
 #    tmpfs:
 #      - "/dev/disk/by-id:noexec,rw,size=4k"
+  shellinabox:
+    image: spali/shellinabox
+    container_name: shellinabox
+    environment:
+      - SHELLINABOX_DISABLE_SSL=1
+    ports:
+      - "4200:4200"
+    restart: unless-stopped
 
 networks:
   static-network:
