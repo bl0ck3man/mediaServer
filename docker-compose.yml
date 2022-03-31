@@ -124,19 +124,19 @@ services:
        - "51413:51413/udp"
     restart: unless-stopped
 
-#  plex:
-#    image: linuxserver/plex
-#    container_name: plex
-#    network_mode: host
-#    environment:
-#      - PLEX_UID=${USER_ID}
-#      - PLEX_GID=${GROUP_ID}
-#      - VERSION=docker
-#    volumes:
-#      - ./plex/config:/config
-#      - ./plex/playlists:/data/playlists
-#      - ${PLEX_VIDEO}:/data/movies
-#    restart: unless-stopped
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PLEX_UID=${USER_ID}
+      - PLEX_GID=${GROUP_ID}
+      - VERSION=docker
+    volumes:
+      - ./plex/config:/config
+      - ./plex/playlists:/data/playlists
+      - ${PLEX_VIDEO}:/movies
+    restart: unless-stopped
 
 #  aceproxy:
 #    restart: always
